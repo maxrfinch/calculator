@@ -175,7 +175,5 @@ window.addEventListener('keydown', function(k){
       default:
         keyPress(key);
     }
-  } else {
-    console.log('invalid');
   }
 });
