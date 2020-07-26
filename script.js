@@ -1,7 +1,7 @@
 var screen = document.getElementById('screen');
 var currentValue;
+var currentFunc = "";
 var tempValue = [];
-var currentFunction = "";
 
 /*
   This function simply updates the screen with the number that should be displayed.
@@ -13,12 +13,32 @@ function update(value){
 }
 
 /*
-  This function stores the current value and resets tempValue.
+  This function calculates the current value and resets tempValue.
 */
-function store(){
-  currentValue = parseInt(tempValue.join(''));
-  tempValue = [];
-  update('0');
+function calculate(func){
+  if (tempValue.join() != ""){
+    console.log(func)
+    if(func != "=") {
+      if(currentValue == 0 || currentValue == null){
+        currentValue = parseInt(tempValue.join(''));
+        currentFunc = func;
+        tempValue = [];
+        update('0');
+      } else {
+        currentValue = eval(currentValue.toString() + currentFunc + tempValue.join(''));
+        tempValue = [];
+        currentFunc = func;
+        update(currentValue.toString());
+      }
+    } else {
+      currentValue = eval(currentValue.toString() + currentFunc + tempValue.join(''));
+      update(currentValue.toString());
+      tempValue = currentValue.toString().split('');
+      currentValue = 0;
+      currentFunc = "";
+      console.log("equals");
+    }
+  }
 }
 
 /*
@@ -58,6 +78,8 @@ function functionPressed(value) {
       //All Clear
       console.log('Clear');
       tempValue = [];
+      currentFunc = "";
+      currentValue = 0;
       update('0');
       break;
     case "+/-":
@@ -82,33 +104,35 @@ function functionPressed(value) {
     case "/":
       //Divide
       if(tempValue.join('') != null || tempValue.join('') != "") {
-        store();
-        currentFunction = "/";
+        calculate('/');
+
       }
       break;
     case "x":
       //Multiply
       if(tempValue.join('') != null || tempValue.join('') != "") {
-        store();
-        currentFunction = "x";
+        calculate('*');
+
       }
       break;
     case "-":
       //Subtract
       if(tempValue.join('') != null || tempValue.join('') != "") {
-        store();
-        currentFunction = "-";
+        calculate('-');
+
       }
       break;
     case "+":
       //Add
       if(tempValue.join('') != null || tempValue.join('') != "") {
-        store();
-        currentFunction = "+";
+        calculate('+');
       }
       break;
     case "=":
       //Equals
+      if(tempValue.join('') != null || tempValue.join('') != "") {
+        calculate('=');
+      }
       break;
     case ".":
       //Float
@@ -134,13 +158,19 @@ window.addEventListener('keydown', function(k){
   var key = k.key;
   if(["0","1","2","3","4","5","6","7","8","9","0"].includes(key.toLowerCase())){
     keyPress(key);
-  } else if (["+","=","-","/","%", "backspace","n"].includes(key.toLowerCase())){
-    switch (key) {
+  } else if (["+","=","-","/","%", "backspace","n", ".", "enter", "x", "*"].includes(key.toLowerCase())){
+    switch (key.toLowerCase()) {
       case "backspace":
         keyPress("AC");
         break;
+      case "enter":
+        keyPress("=");
+        break;
       case "n":
         keyPress("+/-");
+        break;
+      case "*":
+        keyPress("x");
         break;
       default:
         keyPress(key);
