@@ -10,32 +10,32 @@
 <body>
   <div class="calculator">
     <div class="calculator__screen">
-      <span class="calculator__screen-char">0</span>
+      <span class="calculator__screen-char" id="screen">0</span>
     </div>
 
     <div class="calculator__keypad">
       <!-- Top Row -->
-      <span class="calculator__keypad-key all-clear">AC</span>
-      <span class="calculator__keypad-key">+/-</span>
-      <span class="calculator__keypad-key">%</span>
-      <span class="calculator__keypad-key orange">/</span>
+      <span class="calculator__keypad-key all-clear" onclick="keyPress(this);">AC</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">+/-</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">%</span>
+      <span class="calculator__keypad-key orange" onclick="keyPress(this);">/</span>
       <!-- Main Section -->
-      <span class="calculator__keypad-key">7</span>
-      <span class="calculator__keypad-key">8</span>
-      <span class="calculator__keypad-key">9</span>
-      <span class="calculator__keypad-key orange">x</span>
-      <span class="calculator__keypad-key">4</span>
-      <span class="calculator__keypad-key">5</span>
-      <span class="calculator__keypad-key">6</span>
-      <span class="calculator__keypad-key orange">-</span>
-      <span class="calculator__keypad-key">1</span>
-      <span class="calculator__keypad-key">2</span>
-      <span class="calculator__keypad-key">3</span>
-      <span class="calculator__keypad-key orange">+</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">7</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">8</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">9</span>
+      <span class="calculator__keypad-key orange" onclick="keyPress(this);">x</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">4</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">5</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">6</span>
+      <span class="calculator__keypad-key orange" onclick="keyPress(this);">-</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">1</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">2</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">3</span>
+      <span class="calculator__keypad-key orange" onclick="keyPress(this);">+</span>
       <!-- Bottom Row -->
-      <span class="calculator__keypad-key two-col">0</span>
-      <span class="calculator__keypad-key">.</span>
-      <span class="calculator__keypad-key orange">=</span>
+      <span class="calculator__keypad-key two-col" onclick="keyPress(this);">0</span>
+      <span class="calculator__keypad-key" onclick="keyPress(this);">.</span>
+      <span class="calculator__keypad-key orange" onclick="keyPress(this);">=</span>
     </div>
   </div>
 
