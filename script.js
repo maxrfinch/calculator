@@ -27,7 +27,12 @@ function. onclick is reported in the HTML and sends itself, which then records t
 innerText and determins if the key is a number or NaN.
 */
 function keyPress (key) {
-  var value = key.innerText;
+  if(typeof(key) == "string"){
+    var value = key
+  } else if (typeof(key) == "object"){
+    var value = key.innerText;
+  }
+
   if(!isNaN(parseInt(value))){
     //If the key is a number, act accordingly
     update(numberPressed(value));
@@ -118,3 +123,29 @@ function functionPressed(value) {
       console.log("error - unknown function");
   }
 }
+
+
+/*
+Dectects key pressed and translates them to either a function or a number. (as a string)
+Keys that aren't valid are logged as "invalid". This is then sent to the keyPress function.
+*/
+
+window.addEventListener('keydown', function(k){
+  var key = k.key;
+  if(["0","1","2","3","4","5","6","7","8","9","0"].includes(key.toLowerCase())){
+    keyPress(key);
+  } else if (["+","=","-","/","%", "backspace","n"].includes(key.toLowerCase())){
+    switch (key) {
+      case "backspace":
+        keyPress("AC");
+        break;
+      case "n":
+        keyPress("+/-");
+        break;
+      default:
+        keyPress(key);
+    }
+  } else {
+    console.log('invalid');
+  }
+});
